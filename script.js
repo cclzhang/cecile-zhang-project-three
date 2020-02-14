@@ -16,7 +16,13 @@ const $sleepForm = $(".sleepTwo form");
 
 
 // -------------------- SLEEP -----------------------//
-const dayOfWeek = new Date().getDay();
+
+let today = new Date();
+let dd = today.getDate();
+let mm = today.getMonth();
+let yyyy = today.getFullYear();
+
+const dayOfWeek = today.getDay();
 
 // console.log(lifeApp.averageSlept());
 //const averageSleep = lifeApp.averageSlept();
@@ -41,10 +47,11 @@ lifeApp.sleepOneHtml = `
 
 lifeApp.sleepTwoHtml = `
     <section class="sleepTwo">
+        <h2>${dd}/${mm}/${yyyy}</h2>
         <form>
             <label for="bedTime">What time did you sleep?</label>
             <input id="bedTime" type="time" name="bedTime" required>
-            <label for="wakeTime">What time did you sleep?</label>
+            <label for="wakeTime">What time did you wake up?</label>
             <input id="wakeTime" type="time" name="wakeTime" required>
             <button type="submit">populate</button>
         </form>
@@ -212,6 +219,8 @@ lifeApp.init = () => {
     if (localStorage.getItem("goalList") == null) {
         localStorage.setItem("goalList", JSON.stringify([]));
     }
+
+    
 }
 
 $(function () {
