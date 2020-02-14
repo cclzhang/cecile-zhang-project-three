@@ -30,6 +30,7 @@ a {
 button {
     border: none;
     background: inherit;
+    cursor: pointer;
 }
 
 body {
@@ -88,12 +89,13 @@ main {
     margin: auto auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
 }
 .sleepOne ul{
-    min-width: 350px;
+    min-width: 330px;
     min-height: 350px;
     width: 75%;
     height: 55%;
@@ -106,11 +108,17 @@ main {
 }
 
 .sleepOne li {
-    height: 100px;
     width: 30px;
+    background: pink;
 }
 
 /* sleep page two */
+.sleepTwo {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .sleepTwo form {
     display: flex;
