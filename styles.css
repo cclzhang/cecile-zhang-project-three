@@ -50,6 +50,13 @@ body {
 }
 
 /* typography */
+h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    margin: 0;
+    background: rgb(255, 175, 175, 0.4);
+}
+
 h2 {
     font-size: 3rem;
     color: rgb(30, 30, 63);
@@ -83,7 +90,6 @@ nav button:focus {
 nav a:hover, 
 nav button:hover {
     color: rgb(255, 175, 175);
-    /* text-decoration: underline; */
 }
 
 .desktopNav {
@@ -101,14 +107,10 @@ nav button:hover {
 
 .desktopNav button, 
 .desktopNav a {
-    padding: 15px 10%;
+    padding: 15px 15%;
     text-align: right;
     font-family: 'courier new', monospace;
 }
-
-/* .desktopNav a {
-    font-size: 3rem;
-} */
 
 .desktopNav .home {
     margin: 35px 0;
@@ -171,12 +173,6 @@ main {
     padding: 2px 0;
 }
 
-h1 {
-    font-size: 3rem;
-    font-weight: 300;
-    margin: 0;
-}
-
 .title h2 {
     text-transform: uppercase;
     font-weight: 400;
@@ -197,6 +193,7 @@ h1 {
 
 .incomplete {
     cursor: auto;
+    opacity: 0.7;
 }
 
 .incomplete:hover, 
@@ -282,12 +279,22 @@ nav .incomplete:focus {
     text-align: center;
 }
 
-.sleepTwo label {
+.sleepTwo label, 
+.goalsOne label {
     font-size: 2rem;
 }
 
-.sleepTwo input {
-    width: 325px;
+.sleepTwo input, 
+.goalsOne form, 
+.goalsOne input, 
+.goalsOne ul {
+    max-width: 850px; 
+    width: 80%;
+    min-width: 325px;
+}
+
+.sleepTwo input, 
+.goalsOne input {
     margin: 15px;
     padding: 15px 0 15px 20px;
     font-size: 4rem;
@@ -298,7 +305,8 @@ nav .incomplete:focus {
     font-family: 'Montserrat', sans-serif;
 }
 
-.sleepTwo input:focus {
+.sleepTwo input:focus, 
+.goalsOne input:focus {
     background: rgb(255, 175, 175);
     color: rgb(55, 55, 95);
 }
@@ -307,6 +315,7 @@ nav .incomplete:focus {
     width: 140px;
     color: rgb(55, 55, 95);
     padding: 20px;
+    margin: 10px;
     font-size: 1.6rem;
     text-transform: uppercase;
     background: rgb(255, 175, 175);
@@ -315,7 +324,9 @@ nav .incomplete:focus {
 }
 
 .sleepTwo button:hover, 
-.sleepTwo button:focus  {
+.sleepTwo button:focus, 
+.goalsOne button[type="submit"]:hover, 
+.goalsOne button[type="submit"]:focus {
     background: rgb(55, 55, 95);
     color: rgb(255, 175, 175);
     box-shadow: 6px -4px rgb(255, 175, 175);
@@ -332,6 +343,17 @@ nav .incomplete:focus {
     text-align: center;
 }
 
+.goalsOne h3 {
+    width: 50px;
+    height: 50px;
+    background: rgb(55, 55, 95);
+    color: rgb(255, 175, 175);
+    border-radius: 50%;
+    margin: 15px 0 30px 0;
+    padding: 7px;
+    font-size: 3rem;
+}
+
 #goalsError {
     display: none;
     background: rgb(255, 175, 175);
@@ -342,14 +364,52 @@ nav .incomplete:focus {
 .goalsOne form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.goalsOne input {
+    font-size: 1.8rem;
+    padding-left: 0;
+}
+
+.goalsOne ul {
+    padding: 30px 0;
 }
 
 .goalsOne li {
     text-align: left;
-    list-style-type: square;
+    line-height: 1.7;
+    font-size: 1.6rem;
+    padding: 10px 0 0 0; 
+    cursor: pointer;
+    color: rgb(30, 30, 63);
+    border-bottom: 1px solid rgb(55, 55, 95);
+    display: flex;
+    justify-content: space-between;
 }
 
-.strikethrough {
+.goalDeleteButton {
+    color: rgb(55, 55, 95);
+}
+.goalDeleteButton:hover, 
+.goalDeleteButton:focus {
+    color: rgb(253, 136, 136);
+    outline: none;
+}
+
+.goalsOne button[type="submit"] {
+    width: 200px;
+    color: rgb(55, 55, 95);
+    padding: 17px 20px;
+    margin: 10px 0;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    background: rgb(255, 175, 175);
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.completed {
     text-decoration: line-through;
 }
 

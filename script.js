@@ -13,6 +13,7 @@ const $wakeTime = $("#wakeTime");
 const $insertSleep = $(".insertSleep");
 const $sleepForm = $(".sleepTwo form");
 
+// -------------------- HOME ------------------------//
 
 
 // -------------------- SLEEP -----------------------//
@@ -132,11 +133,11 @@ const $goalsForm = $(".goalsOne form");
 
 lifeApp.goalsOneHtml = `
     <section class="goalsOne">
-        <h2>goals breakdown</h2>
+        <h2>most important list</h2>
         <h3>${goalsCompleted}</h3>
         <form>
-            <label for="goal">Enter a goal</label>
-            <input type="text" id="goal" placeholder="Eat more cake">
+            <label for="goal">enter a new goal</label>
+            <input type="text" id="goal" placeholder="save the world">
             <button type="submit">Add a new goal</button>
         </form>
         <div id="goalsError">Cannot enter a blank goal</div>
@@ -187,7 +188,7 @@ $wrapper.on("submit", ".goalsOne form", function (e) {
 
 
 $wrapper.on("click", ".goalsOne li", function () {
-    $(this).toggleClass("strikethrough");
+    $(this).toggleClass("completed");
     const list = JSON.parse(localStorage.getItem("goalList"));
     localStorage.setItem("goalList", JSON.stringify(list));
 });
