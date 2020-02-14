@@ -18,9 +18,9 @@ const $sleepForm = $(".sleepTwo form");
 // -------------------- SLEEP -----------------------//
 const dayOfWeek = new Date().getDay();
 
-lifeApp.averageSleep = 7;
-
-// sleepArray[index] -> localStorage.getItem("day" + index);
+// console.log(lifeApp.averageSlept());
+//const averageSleep = lifeApp.averageSlept();
+lifeApp.averageSleep = 0;
 
 lifeApp.sleepOneHtml = `
     <section class="sleepOne">
@@ -71,8 +71,14 @@ $wrapper.on("submit", $sleepForm, function(e){
     const wakeTime = lifeApp.convertTime($wakeTime);
     //console.log(lifeApp.timeSlept(bedTime, wakeTime));
     $wrapper.html(lifeApp.sleepOneHtml);
+    if(dayOfWeek === 0){
+        for (i = 0; i < 7; i++) {
+            localStorage.setItem("day" + i, 0);
+        }
+    }
     localStorage.setItem("day" + dayOfWeek, lifeApp.timeSlept(bedTime, wakeTime));
     lifeApp.updateGraph();
+    console.log(lifeApp.averageSlept());
 });
 
 
@@ -106,8 +112,16 @@ lifeApp.updateGraph = () => {
 
 // function to calculate average time slept
 lifeApp.averageSlept = () => {
-
-}
+    let sum = 0;
+    let daysRecorded = 0;
+    for (i = 0; i < 7; i++) {
+        if(localStorage.getItem("day" + i) > 0){
+            sum += localStorage.getItem("day" + i);
+            daysRecorded++;
+        };
+    };
+    return (sum / daysRecorded).toFixed(1);
+};
 
 
 // -------------------- GOALS -----------------------//
@@ -131,23 +145,41 @@ lifeApp.goalsOneHtml = `
 
 $goalsButton.on("click", function () {
     $wrapper.html(lifeApp.goalsOneHtml);
+    // json.parse converts string back into array
+    const list = JSON.parse(localStorage.getItem("goalList"));
+    for (i = 0; i < list.length; i++) {
+        const deleteGoalButton = `
+            <button class="goalDeleteButton">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        `;
+        $('.goalsOne ul').append(`
+            <li>${list[i]}${deleteGoalButton}</li>
+        `);
+    }
 });
 
 
-
-$wrapper.on("submit", ".goalsOne form", function(e){
+$wrapper.on("submit", ".goalsOne form", function (e) {
     e.preventDefault();
     let goal = $('.goalsOne input').val();
     console.log(goal);
 
     // to delete goal
-    const deleteGoalButton = `<button class="goalDeleteButton"><i class="fas fa-trash-alt"></i></button>`;
+    const deleteGoalButton = `
+        <button class="goalDeleteButton">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    `;
 
     if (goal.replace(/\s/g, '').length) {
         $('#goalsError').hide();
         $('.goalsOne ul').append(`<li>${goal}${deleteGoalButton}</li>`);
         $('.goalsOne input').val('');
-    }else{
+        const list = JSON.parse(localStorage.getItem("goalList"));
+        list.push(goal);
+        localStorage.setItem("goalList", JSON.stringify(list));
+    } else {
         $('#goalsError').show();
     };
 });
@@ -155,13 +187,17 @@ $wrapper.on("submit", ".goalsOne form", function(e){
 
 $wrapper.on("click", ".goalsOne li", function () {
     $(this).toggleClass("strikethrough");
+    const list = JSON.parse(localStorage.getItem("goalList"));
+    localStorage.setItem("goalList", JSON.stringify(list));
 });
 
-$wrapper.on("click", ".goalDeleteButton", function(){
+$wrapper.on("click", ".goalDeleteButton", function () {
     const goalListItem = $(this).parent();
+    const list = JSON.parse(localStorage.getItem("goalList"));
+    list.splice($(this).index(), 1);
+    localStorage.setItem("goalList", JSON.stringify(list));
     goalListItem.remove();
 });
-
 
 
 
@@ -171,6 +207,10 @@ lifeApp.init = () => {
         if (localStorage.getItem("day" + i) == null) {
             localStorage.setItem("day" + i, 0);
         }
+    }
+    // json.stringify converts array into string to store to local storage
+    if (localStorage.getItem("goalList") == null) {
+        localStorage.setItem("goalList", JSON.stringify([]));
     }
 }
 
