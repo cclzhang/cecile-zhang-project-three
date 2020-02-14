@@ -85,7 +85,8 @@ main {
 }
 
 /* sleep page one */
-.sleepOne {
+.sleepOne, 
+.goalsOne {
     margin: auto auto;
     display: flex;
     flex-direction: column;
@@ -94,6 +95,7 @@ main {
     height: 100vh;
     width: 100%;
 }
+
 .sleepOne ul{
     min-width: 330px;
     min-height: 350px;
@@ -126,7 +128,23 @@ main {
     flex-direction: column;
 }
 
+/* goals page one */
+#goalsError {
+    display: none;
+    background: pink;
+}
 
+.goalsOne form {
+    display: flex;
+    flex-direction: column;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+
+/* media queries */
 @media (max-width: 768px) {
     .mainPage {
         grid-gap: 30px;
