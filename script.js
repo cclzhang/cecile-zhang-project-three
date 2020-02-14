@@ -30,7 +30,7 @@ lifeApp.averageSleep = 0;
 
 lifeApp.sleepOneHtml = `
     <section class="sleepOne">
-        <h2>sleep breakdown</h2>
+        <h2>wtd breakdown</h2>
         <h3>${lifeApp.averageSleep}hrs</h3>
         <ul>
             <li></li>
@@ -72,11 +72,8 @@ $wrapper.on("submit", $sleepForm, function(e){
     e.preventDefault();
     const $bedTime = $("#bedTime").val();
     const $wakeTime = $("#wakeTime").val();
-    //console.log($bedTime, $wakeTime);
-    //console.log(typeof $bedTime);
     const bedTime = lifeApp.convertTime($bedTime);
     const wakeTime = lifeApp.convertTime($wakeTime);
-    //console.log(lifeApp.timeSlept(bedTime, wakeTime));
     $wrapper.html(lifeApp.sleepOneHtml);
     if(dayOfWeek === 0){
         for (i = 0; i < 7; i++) {
@@ -105,9 +102,6 @@ lifeApp.timeSlept = (sleep, wake) => {
         return diff.toFixed(2);
     };
 };
-
-// function to push time slept into sleep array
-
 
 // function to update graph
 lifeApp.updateGraph = () => {

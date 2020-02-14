@@ -55,6 +55,11 @@ h2 {
     color: rgb(30, 30, 63);
 }
 
+h3 {
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
 /* navigation */
 nav {
     background: rgb(55, 55, 95);
@@ -64,6 +69,7 @@ nav {
 
 nav a {
     display: block;
+    font-size: 2.5rem;
 }
 
 nav a:focus, 
@@ -76,7 +82,7 @@ nav button:focus {
 
 nav a:hover, 
 nav button:hover {
-    color: rgb(255, 160, 160);
+    color: rgb(255, 175, 175);
     /* text-decoration: underline; */
 }
 
@@ -100,9 +106,9 @@ nav button:hover {
     font-family: 'courier new', monospace;
 }
 
-.desktopNav a {
+/* .desktopNav a {
     font-size: 3rem;
-}
+} */
 
 .desktopNav .home {
     margin: 35px 0;
@@ -128,6 +134,11 @@ nav button:hover {
 
 .mobileNav button {
     padding: 5px 0;
+}
+
+.mobileNav a:focus {
+    border: none;
+    color: rgb(255, 175, 175);
 }
 
 /* main page */
@@ -196,6 +207,10 @@ h1 {
     outline: none;
 }
 
+nav .incomplete:focus {
+    border: none;
+}
+
 /* sleep page one */
 .sleepOne {
     margin: auto auto;
@@ -213,8 +228,8 @@ h1 {
     height: 50%;
     padding: 0 2%;
     margin: 30px 0;
-    border-left: 5px solid rgb(255, 160, 160);
-    border-bottom: 5px solid rgb(255, 160, 160);
+    border-left: 5px solid rgb(255, 175, 175);
+    border-bottom: 5px solid rgb(255, 175, 175);
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
@@ -225,16 +240,26 @@ h1 {
     background: rgb(55, 55, 95, 0.6);
 }
 
+.sleepOne h3 {
+    margin: 5px;
+}
 
 .addSleep {
     color: rgb(255, 242, 235);
     padding: 20px 30px;
-    /* margin: 30px; */
     font-size: 1.6rem;
     text-transform: uppercase;
     background: rgb(55, 55, 95);;
     border-radius: 15px;
     font-weight: 500;
+}
+
+.addSleep:hover, 
+.addSleep:focus  {
+    background: rgb(255, 175, 175);
+    color: rgb(55, 55, 95);
+    box-shadow: 6px -4px rgb(55, 55, 95);
+    outline: none;
 }
 
 
@@ -252,6 +277,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    align-items: center;
     margin: 30px 0;
     text-align: center;
 }
@@ -261,11 +287,39 @@ h1 {
 }
 
 .sleepTwo input {
+    width: 325px;
     margin: 15px;
-    padding: 15px;
-    font-size: 3rem;
+    padding: 15px 0 15px 20px;
+    font-size: 4rem;
     text-align: center;
-    color: pink;
+    color: rgb(255, 175, 175);
+    border: none;
+    background: rgb(55, 55, 95);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sleepTwo input:focus {
+    background: rgb(255, 175, 175);
+    color: rgb(55, 55, 95);
+}
+
+.sleepTwo button {
+    width: 140px;
+    color: rgb(55, 55, 95);
+    padding: 20px;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    background: rgb(255, 175, 175);
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.sleepTwo button:hover, 
+.sleepTwo button:focus  {
+    background: rgb(55, 55, 95);
+    color: rgb(255, 175, 175);
+    box-shadow: 6px -4px rgb(255, 175, 175);
+    outline: none;
 }
 
 /* goals page one */
@@ -273,17 +327,26 @@ h1 {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 #goalsError {
     display: none;
-    background: rgb(55, 55, 95);
+    background: rgb(255, 175, 175);
+    color: rgb(55, 55, 95);
+    padding: 10px 10px;
 }
 
 .goalsOne form {
     display: flex;
     flex-direction: column;
+}
+
+.goalsOne li {
+    text-align: left;
+    list-style-type: square;
 }
 
 .strikethrough {
