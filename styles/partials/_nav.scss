@@ -10,7 +10,8 @@ nav {
         @include fontSize(25);
     }
     a:focus, 
-    button:focus {
+    button:focus, 
+    button:active {
         border: 1px solid $secondaryColour;
         outline: none;
         border-left: none;
@@ -58,9 +59,5 @@ nav {
     }
     button {
         padding: 5px 0;
-    }
-    a:focus {
-        border: none;
-        color: $accentColour;
     }
 }
