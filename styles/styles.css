@@ -377,7 +377,7 @@ nav button:hover {
 }
 
 .mobileNav {
-  height: auto;
+  height: 7.5vh;
   width: 100vw;
   padding: 15px 5%;
   font-size: 16px;
@@ -568,7 +568,7 @@ nav .incomplete:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  min-height: 95vh;
+  min-height: 92.5vh;
 }
 
 .sleepOne ul {
@@ -741,7 +741,7 @@ nav .incomplete:focus {
 
 /* goals page one */
 .goalsOne {
-  min-height: 100vh;
+  min-height: 92.5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -864,7 +864,7 @@ nav .incomplete:focus {
 
 .runOne {
   width: 100%;
-  min-height: 95vh;
+  min-height: 92.5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -986,7 +986,15 @@ nav .incomplete:focus {
     display: block;
   }
   .reset {
-    top: 60px;
+    top: 55px;
     right: 0;
+  }
+  main {
+    height: 92vh;
+  }
+  .mainPage {
+    height: 92.5vh;
+    -ms-grid-rows: 9vh (15.5vh)[4];
+        grid-template-rows: 9vh repeat(4, 15.5vh);
   }
 }

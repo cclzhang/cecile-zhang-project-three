@@ -23,7 +23,14 @@
         display: block;
     }
     .reset {
-        top: 60px;
+        top: 55px;
         right: 0;
+    }
+    main {
+        height: 92vh;
+    }
+    .mainPage {
+        height: 92.5vh;
+        grid-template-rows: 9vh repeat(4, 15.5vh);
     }
 }
