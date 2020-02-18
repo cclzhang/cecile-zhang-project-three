@@ -1,0 +1,67 @@
+
+
+/* sleep page two */
+.sleepTwo {
+    height: 100vh;
+    @include flex(column, center, center);
+    color: $primaryText;
+    form {
+        @include flex(column, null, center);
+        margin: 30px 0;
+        text-align: center;
+    }
+}
+
+.sleepTwo label, 
+.goalsOne label {
+    @include fontSize(20);
+}
+
+.sleepTwo input, 
+.goalsOne form, 
+.goalsOne input, 
+.goalsOne ul {
+    max-width: 850px; 
+    width: 80%;
+    min-width: 325px;
+}
+
+.sleepTwo input, 
+.goalsOne input {
+    margin: 15px;
+    padding: 15px 0 15px 20px;
+    @include fontSize(40);
+    text-align: center;
+    color: $accentColour;
+    border: none;
+    background: $primaryColour;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sleepTwo input:focus, 
+.goalsOne input:focus {
+    background: $accentColour;
+    color: $primaryColour;
+}
+
+.sleepTwo button {
+    width: 140px;
+    color: $primaryColour;
+    padding: 20px;
+    margin: 10px;
+    @include fontSize(16);
+    text-transform: uppercase;
+    background: $accentColour;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.sleepTwo button:hover, 
+.sleepTwo button:focus, 
+.goalsOne button[type="submit"]:hover, 
+.goalsOne button[type="submit"]:focus {
+    background: $primaryColour;
+    color: $accentColour;
+    box-shadow: 6px -4px $accentColour;
+    outline: none;
+}

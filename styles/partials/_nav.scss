@@ -1,0 +1,65 @@
+
+
+nav {
+    background: $primaryColour;
+    color: $secondaryColour;
+    @include fontSize(20);
+    font-family: 'courier new', monospace;
+    a {
+        display: block;
+        @include fontSize(25);
+    }
+    a:focus, 
+    button:focus {
+        border: 1px solid $secondaryColour;
+        outline: none;
+        border-left: none;
+        border-right: none;
+    }
+    a:hover, 
+    button:hover {
+        color: $accentColour;
+    }
+}
+
+.desktopNav {
+    height: 100%;
+    width: 20%;
+    min-width: 110px;
+    ul {
+        height: 100%;
+        @include flex(column, center, null);
+    }
+    button, 
+    a {
+        padding: 15px 15%;
+        text-align: right;
+        font-family: 'courier new', monospace;
+    }
+    .home {
+        margin: 35px 0;
+    }
+}
+
+.desktopNav 
+.desktopNav button {
+    width: 100%;
+}
+
+.mobileNav {
+    height: auto;
+    width: 100vw;
+    padding: 15px 5%;
+    @include fontSize(16);
+    display: none;
+    ul {
+        @include flex(nul, space-between, null);
+    }
+    button {
+        padding: 5px 0;
+    }
+    a:focus {
+        border: none;
+        color: $accentColour;
+    }
+}

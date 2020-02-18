@@ -1,0 +1,43 @@
+
+
+/* sleep page one */
+.sleepOne {
+    margin: auto auto;
+    @include flex(column, center, center);
+    height: 100vh;
+    ul{
+        min-width: 330px;
+        min-height: 350px;
+        width: 75%;
+        height: 50%;
+        padding: 0 2%;
+        margin: 30px 0;
+        border-left: 5px solid $accentColour;
+        border-bottom: 5px solid $accentColour;
+        @include flex(nul, space-around, flex-end);
+    }
+    li {
+        width: 30px;
+        background: rgba($primaryColour, 0.6);
+    }
+    h3 {
+        margin: 5px;
+    }
+}
+
+.addSleep {
+    color: $secondaryColour;
+    padding: 20px 30px;
+    @include fontSize(16);
+    text-transform: uppercase;
+    background: $primaryColour;;
+    border-radius: 15px;
+    font-weight: 500;
+    &:hover, 
+    &:focus  {
+        background: $accentColour;
+        color: $primaryColour;
+        box-shadow: 6px -4px $primaryColour;
+        outline: none;
+    }
+}

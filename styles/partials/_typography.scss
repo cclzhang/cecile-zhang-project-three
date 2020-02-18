@@ -1,0 +1,17 @@
+/* typography */
+h1 {
+    @include fontSize(30);
+    font-weight: 300;
+    margin: 0;
+    background: rgba(255, 175, 175, 0.4);
+}
+
+h2 {
+    @include fontSize(30);
+    color: $primaryText;
+}
+
+h3 {
+    @include fontSize(16);
+    font-weight: 300;
+}

@@ -1,0 +1,26 @@
+
+
+/* media queries */
+@media (max-width: 768px) {
+    .mainPage {
+        grid-gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 9vh repeat(4, 19vh);
+    }
+    .category {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        flex-direction: column;
+    }
+    .desktopNav {
+        display: none;
+    }
+    .mobileNav {
+        display: block;
+        // font-weight: 500;
+    }
+}
