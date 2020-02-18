@@ -465,6 +465,10 @@ main {
   outline: none;
 }
 
+.category h2 {
+  margin: 15px 0;
+}
+
 .incomplete {
   cursor: auto;
   opacity: 0.7;
