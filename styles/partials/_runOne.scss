@@ -1,12 +1,57 @@
 .runOne {
-    // width: 1000px;
-    // height: 1000px;
-    border: 1px solid black;
-    display: flex;
-    flex-wrap: wrap;
-    li {
-        width: 100px;
-        height: 100px;
-        border: 1px solid black;
+    width: 100%;
+    min-height: 95vh;
+    @include flex(column, center, center);
+    h3 {
+        margin: 20px 0;
     }
 }
+
+.calendarDate,
+.calendarLabel {
+    max-width: 750px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+            font-family: $secondaryFont;
+    @include fontSize(15);
+    li {
+        min-width: 40px;
+    }
+}
+
+.calendarLabel {
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 175, 175, 0.4);
+    text-decoration-thickness: 5px;
+    cursor: default;
+    li {
+        padding: 10px 0;
+    }
+}
+
+.calendarDate {
+    grid-template-rows: repeat(5, 50px);
+    grid-auto-rows: 100px;
+    li {
+        border-radius: 10px;
+        @include flex(null, center, center);
+        &:hover{
+            background-color: rgba(255, 175, 175, 0.4);
+            cursor: pointer;
+        }
+        font-weight: 600;
+    }
+    li:first-child{
+        grid-column-start: -2;
+    }
+    .ran {
+        background-color: $accentColour;
+        &:hover{
+            background-color: $accentColour;
+            cursor: auto;
+        }
+    }
+}
+

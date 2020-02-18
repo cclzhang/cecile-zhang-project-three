@@ -13,7 +13,7 @@ const $wakeTime = $("#wakeTime");
 const $insertSleep = $(".insertSleep");
 const $sleepForm = $(".sleepTwo form");
 lifeApp.averageSleep = localStorage.getItem("averageSleep");
-lifeApp.goalsCompleted = localStorage.getItem("goalsCompleted");
+// lifeApp.goalsCompleted = localStorage.getItem("goalsCompleted");
 
 // -------------------- HOME ------------------------//
 lifeApp.mainHtml = `
@@ -24,15 +24,15 @@ lifeApp.mainHtml = `
         </section>
         <button class="category sleep">
             <h2>sleep</h2>
-            <h3></h3><!-- average -->
+            <h3>--</h3><!-- average -->
         </button>
         <button class="category run">
             <h2>run</h2>
-            <h3>coming soon</h3><!-- times per month -->
+            <h3>--</h3><!-- times per month -->
         </button>
         <button class="category goals">
             <h2>goals</h2>
-            <h3>no data</h3><!-- amount completed -->
+            <h3>--</h3><!-- amount completed -->
         </button>
         <button class="category cubing incomplete" tabindex="-1">
             <h2>cubing</h2>
@@ -44,6 +44,7 @@ $homeButton.on('click', function(){
     $wrapper.html(lifeApp.mainHtml);
     $(".sleep.category h3").html(`${localStorage.getItem("averageSleep")} hrs on average`);
     $(".goals.category h3").html(`${localStorage.getItem("goalsLeft")} left`);
+    $(".run.category h3").html(`${localStorage.getItem("runTotal")} x`);
 })
 
 
@@ -148,14 +149,14 @@ lifeApp.updateGraph = () => {
 // function to calculate average time slept
 lifeApp.averageSlept = () => {
     let sum = 0;
-    let daysRecorded = 0;
+    lifeApp.daysRecorded = 0;
     for (i = 0; i < 7; i++) {
         if(localStorage.getItem("day" + i) > 0){
             sum += localStorage.getItem("day" + i);
-            daysRecorded++;
+            lifeApp.daysRecorded++;
         };
     };
-    return (sum / daysRecorded).toFixed(1);
+    return (sum / lifeApp.daysRecorded).toFixed(1);
 };
 
 
@@ -227,7 +228,7 @@ $wrapper.on("click", ".goalsOne li", function () {
     $(this).toggleClass("completed");
     const list = JSON.parse(localStorage.getItem("goalList"));
     localStorage.setItem("goalList", JSON.stringify(list));
-    localStorage.setItem("goalsCompleted", $(".completed").length);
+    // localStorage.setItem("goalsCompleted", $(".completed").length);
 });
 
 $wrapper.on("click", ".goalDeleteButton", function () {
@@ -244,58 +245,89 @@ $wrapper.on("click", ".goalDeleteButton", function () {
 
 // -------------------- RUN -----------------------//
 lifeApp.runHtml = `
-    <ul class="runOne">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+    <section class="runOne">
+        <h2>february</h2>
+        <h3>--</h3>
+        <ul class="calendarLabel">
+            <li>mon</li>
+            <li>tue</li>
+            <li>wed</li>
+            <li>thu</li>
+            <li>fri</li>
+            <li>sat</li>
+            <li>sun</li>
+        </ul>
+        <ul class="calendarDate">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+            <li>15</li>
+            <li>16</li>
+            <li>17</li>
+            <li>18</li>
+            <li>19</li>
+            <li>20</li>
+            <li>21</li>
+            <li>22</li>
+            <li>23</li>
+            <li>24</li>
+            <li>25</li>
+            <li>26</li>
+            <li>27</li>
+            <li>28</li>
+            <li>29</li>
+        </ul>
+    </section>
 `;
 
 
 $runButton.on("click", function(){
     $wrapper.html(lifeApp.runHtml);
-})
+});
+
+$wrapper.on("click", ".run", function(){
+    $wrapper.html(lifeApp.runHtml);
+});
+
+$wrapper.on("click", ".calendarDate li", function () {
+    $(this).toggleClass("ran");
+    localStorage.setItem("runTotal", $('.ran').length);
+    $(".runOne h3").html(`${localStorage.getItem("runTotal")} x`);
+});
 
 
+
+// -------------------- RESET -----------------------//
+$(".reset button").on("click", function () {
+    swal({
+        title: "Reset Data",
+        text: "Once reset, you will not be able to recover this data!",
+        icon: "warning",
+        buttons: true,
+        buttons: ["Cancel", "Reset"],
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            localStorage.clear();
+            location.reload();
+        } else {
+            swal("Reset Cancelled");
+        }
+    });
+});
+
+// -------------------- INIT & DOC READY -----------------------//
 lifeApp.init = () => {
     // localStorage.clear();
     for (i = 0; i < 7; i++) {
@@ -307,17 +339,21 @@ lifeApp.init = () => {
     if (localStorage.getItem("goalList") == null) {
         localStorage.setItem("goalList", JSON.stringify([]));
     }
-    if (localStorage.getItem("goalsCompleted") == null) {
-        localStorage.setItem("goalsCompleted", 0);
-    }
+    // if (localStorage.getItem("goalsCompleted") == null) {
+    //     localStorage.setItem("goalsCompleted", 0);
+    // }
     if (localStorage.getItem("averageSleep") == null) {
         localStorage.setItem("averageSleep", "--");
     }
     if (localStorage.getItem("goalsLeft")==null){
         localStorage.setItem("goalsLeft","--");
     }
+    if (localStorage.getItem("runTotal") == null) {
+        localStorage.setItem("runTotal", "--");
+    }
     $(".sleep.category h3").html(`${localStorage.getItem("averageSleep")} hrs on average`)
     $(".goals.category h3").html(`${localStorage.getItem("goalsLeft")} left`);
+    $(".run.category h3").html(`${localStorage.getItem("runTotal")} x`);
 }
 
 $(function () {
