@@ -3,12 +3,6 @@ main {
     width: 100%;
 }
 
-.wrapper {
-    width: 90%;
-    height: 100%;
-    margin: 0 auto;
-}
-
 .mainPage {
     display: grid;
     grid-gap: 50px;
@@ -51,7 +45,8 @@ main {
         text-decoration: none;
         outline: none;
     }
-    &:focus {
-        border: none;
-    }
+}
+
+nav .incomplete:focus {
+    border: none;
 }

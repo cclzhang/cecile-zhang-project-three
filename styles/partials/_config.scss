@@ -32,3 +32,13 @@ $secondaryFont: "courier new", "courier", monospace;
 	justify-content: $xAxis;
 	align-items: $yAxis;
 }
+
+// ::before
+@mixin pseudo($content, $top, $right, $bottom, $left) {
+    content: $content;
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}

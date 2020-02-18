@@ -2,7 +2,7 @@ const lifeApp = {};
 
 const $body = $("body");
 const $wrapper = $(".wrapper");
-const $menuButton = $(".menuButton");
+const $homeButton = $(".home");
 const $sleepButton = $(".sleep");
 const $runButton = $(".run");
 const $goalsButton = $(".goals");
@@ -12,8 +12,40 @@ const $bedTime = $("#bedTime");
 const $wakeTime = $("#wakeTime");
 const $insertSleep = $(".insertSleep");
 const $sleepForm = $(".sleepTwo form");
+lifeApp.averageSleep = localStorage.getItem("averageSleep");
+lifeApp.goalsCompleted = localStorage.getItem("goalsCompleted");
 
 // -------------------- HOME ------------------------//
+lifeApp.mainHtml = `
+    <section class="mainPage">
+        <section class="title">
+            <h1>dashboard</h1>
+            <h2>february</h2>
+        </section>
+        <button class="category sleep">
+            <h2>sleep</h2>
+            <h3></h3><!-- average -->
+        </button>
+        <button class="category run incomplete" tabindex="-1">
+            <h2>run</h2>
+            <h3>coming soon</h3><!-- times per month -->
+        </button>
+        <button class="category goals">
+            <h2>goals</h2>
+            <h3>no data</h3><!-- amount completed -->
+        </button>
+        <button class="category cubing incomplete" tabindex="-1">
+            <h2>cubing</h2>
+            <h3>coming soon</h3><!-- average/total times solved -->
+        </button>
+    </section>
+`;
+$homeButton.on('click', function(){
+    console.log(localStorage.getItem("averageSleep"));
+    $wrapper.html(lifeApp.mainHtml);
+    $(".sleep.category h3").html(`${localStorage.getItem("averageSleep")} hrs`);
+    $(".goals.category h3").html(`${localStorage.getItem("goalsLeft")} left`);
+})
 
 
 // -------------------- SLEEP -----------------------//
@@ -27,20 +59,20 @@ const dayOfWeek = today.getDay();
 
 // console.log(lifeApp.averageSlept());
 //const averageSleep = lifeApp.averageSlept();
-lifeApp.averageSleep = 0;
+
 
 lifeApp.sleepOneHtml = `
     <section class="sleepOne">
         <h2>wtd breakdown</h2>
-        <h3>${lifeApp.averageSleep}hrs</h3>
+        <h3></h3>
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li><span>sun</span></li>
+            <li><span>mon</span></li>
+            <li><span>tue</span></li>
+            <li><span>wed</span></li>
+            <li><span>thu</span></li>
+            <li><span>fri</span></li>
+            <li><span>sat</span></li>
         </ul>
         <button class="addSleep">Add Sleep</button>
     </section>
@@ -65,6 +97,12 @@ $sleepButton.on("click", function(){
     lifeApp.updateGraph();  
 });
 
+$wrapper.on("click", ".sleep.category", function () {
+    $wrapper.html(lifeApp.sleepOneHtml);
+    //console.log(localStorage.getItem("kys"));
+    lifeApp.updateGraph();
+});
+
 $wrapper.on("click", ".addSleep", function(){
     $wrapper.html(lifeApp.sleepTwoHtml);
 });
@@ -82,8 +120,10 @@ $wrapper.on("submit", $sleepForm, function(e){
         }
     }
     localStorage.setItem("day" + dayOfWeek, lifeApp.timeSlept(bedTime, wakeTime));
-    lifeApp.updateGraph();
+
     console.log(lifeApp.averageSlept());
+    localStorage.setItem("averageSleep", lifeApp.averageSlept());
+    lifeApp.updateGraph();
 });
 
 
@@ -109,6 +149,7 @@ lifeApp.updateGraph = () => {
     $(".sleepOne li").each(function (index, li) {
         $(li).height(localStorage.getItem("day" + index) * 25);
     })
+    $(".sleepOne h3").html(`${localStorage.getItem("averageSleep")} hrs`);
 };
 
 
@@ -128,13 +169,12 @@ lifeApp.averageSlept = () => {
 
 // -------------------- GOALS -----------------------//
 
-const goalsCompleted = 10;
 const $goalsForm = $(".goalsOne form");
 
 lifeApp.goalsOneHtml = `
     <section class="goalsOne">
         <h2>most important list</h2>
-        <h3>${goalsCompleted}</h3>
+        <h3></h3>
         <form>
             <label for="goal">enter a new goal</label>
             <input type="text" id="goal" placeholder="save the world">
@@ -145,7 +185,7 @@ lifeApp.goalsOneHtml = `
     </section>
 `;
 
-$goalsButton.on("click", function () {
+lifeApp.clickedGoal = () => {
     $wrapper.html(lifeApp.goalsOneHtml);
     // json.parse converts string back into array
     const list = JSON.parse(localStorage.getItem("goalList"));
@@ -159,7 +199,11 @@ $goalsButton.on("click", function () {
             <li>${list[i]}${deleteGoalButton}</li>
         `);
     }
-});
+    $(".goalsOne h3").html(localStorage.getItem("goalsLeft"));
+}
+
+$goalsButton.on("click", lifeApp.clickedGoal);
+$wrapper.on("click", ".goals.category", lifeApp.clickedGoal);
 
 
 $wrapper.on("submit", ".goalsOne form", function (e) {
@@ -181,6 +225,9 @@ $wrapper.on("submit", ".goalsOne form", function (e) {
         const list = JSON.parse(localStorage.getItem("goalList"));
         list.push(goal);
         localStorage.setItem("goalList", JSON.stringify(list));
+        localStorage.setItem("goalsLeft", $(".goalsOne li").length);
+        console.log("li: ",localStorage.getItem("goalsLeft"));
+        $(".goalsOne h3").html(localStorage.getItem("goalsLeft"));
     } else {
         $('#goalsError').show();
     };
@@ -191,6 +238,7 @@ $wrapper.on("click", ".goalsOne li", function () {
     $(this).toggleClass("completed");
     const list = JSON.parse(localStorage.getItem("goalList"));
     localStorage.setItem("goalList", JSON.stringify(list));
+    localStorage.setItem("goalsCompleted", $(".completed").length);
 });
 
 $wrapper.on("click", ".goalDeleteButton", function () {
@@ -199,12 +247,19 @@ $wrapper.on("click", ".goalDeleteButton", function () {
     list.splice($(this).index(), 1);
     localStorage.setItem("goalList", JSON.stringify(list));
     goalListItem.remove();
+    localStorage.setItem("goalsLeft", $(".goalsOne li").length);
+    console.log("li: ", localStorage.getItem("goalsLeft"));
+    $(".goalsOne h3").html(localStorage.getItem("goalsLeft"));
 });
 
 
 
+// -------------------- RUN -----------------------//
+
+
+
 lifeApp.init = () => {
-    //localStorage.clear();
+    // localStorage.clear();
     for (i = 0; i < 7; i++) {
         if (localStorage.getItem("day" + i) == null) {
             localStorage.setItem("day" + i, 0);
@@ -214,8 +269,17 @@ lifeApp.init = () => {
     if (localStorage.getItem("goalList") == null) {
         localStorage.setItem("goalList", JSON.stringify([]));
     }
-
-    
+    if (localStorage.getItem("goalsCompleted") == null) {
+        localStorage.setItem("goalsCompleted", 0);
+    }
+    if (localStorage.getItem("averageSleep") == null) {
+        localStorage.setItem("averageSleep", "--  ");
+    }
+    if (localStorage.getItem("goalsLeft")==null){
+        localStorage.setItem("goalsLeft","");
+    }
+    $(".sleep.category h3").html(`${localStorage.getItem("averageSleep")} hrs`)
+    $(".goals.category h3").html(`${localStorage.getItem("goalsLeft")} left`);
 }
 
 $(function () {

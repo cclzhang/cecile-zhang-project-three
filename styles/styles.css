@@ -258,6 +258,12 @@ html {
   color: #fff2eb;
 }
 
+.wrapper {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+
 li {
   list-style: none;
 }
@@ -353,6 +359,7 @@ nav button:hover {
 
 .desktopNav button,
 .desktopNav a {
+  width: 100%;
   padding: 15px 15%;
   text-align: right;
   font-family: 'courier new', monospace;
@@ -403,12 +410,6 @@ nav button:hover {
 /* main page */
 main {
   width: 100%;
-}
-
-.wrapper {
-  width: 90%;
-  height: 100%;
-  margin: 0 auto;
 }
 
 .mainPage {
@@ -474,7 +475,7 @@ main {
   outline: none;
 }
 
-.incomplete:focus {
+nav .incomplete:focus {
   border: none;
 }
 
@@ -503,9 +504,9 @@ main {
   min-width: 330px;
   min-height: 350px;
   width: 75%;
-  height: 50%;
+  height: 45%;
   padding: 0 2%;
-  margin: 30px 0;
+  margin: 30px 0 60px 0;
   border-left: 5px solid #ffafaf;
   border-bottom: 5px solid #ffafaf;
   display: -webkit-box;
@@ -527,6 +528,14 @@ main {
 .sleepOne li {
   width: 30px;
   background: rgba(55, 55, 95, 0.6);
+  position: relative;
+}
+
+.sleepOne li span {
+  position: absolute;
+  bottom: -35px;
+  font-size: 16px;
+  font-size: 1.6 rem;
 }
 
 .sleepOne h3 {

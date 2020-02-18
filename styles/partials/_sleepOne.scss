@@ -9,9 +9,9 @@
         min-width: 330px;
         min-height: 350px;
         width: 75%;
-        height: 50%;
+        height: 45%;
         padding: 0 2%;
-        margin: 30px 0;
+        margin: 30px 0 60px 0;
         border-left: 5px solid $accentColour;
         border-bottom: 5px solid $accentColour;
         @include flex(nul, space-around, flex-end);
@@ -19,6 +19,12 @@
     li {
         width: 30px;
         background: rgba($primaryColour, 0.6);
+        position: relative;
+        span {
+            position: absolute;
+            bottom: -35px;
+            @include fontSize(16);
+        }
     }
     h3 {
         margin: 5px;
