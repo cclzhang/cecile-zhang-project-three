@@ -307,13 +307,13 @@ $wrapper.on("click", ".calendarDate li", function () {
 });
 
 
-
+let image = "./assets/warning.png"
 // -------------------- RESET -----------------------//
 $(".reset button").on("click", function () {
     swal({
-        title: "Reset Data",
+        title: "reset data",
         text: "Once reset, you will not be able to recover this data!",
-        icon: "warning",
+        icon: "./assets/warning.png",
         buttons: true,
         buttons: ["Cancel", "Reset"],
     })
@@ -322,7 +322,7 @@ $(".reset button").on("click", function () {
             localStorage.clear();
             location.reload();
         } else {
-            swal("Reset Cancelled");
+            swal("Reset has been cancelled.");
         }
     });
 });

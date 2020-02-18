@@ -70,3 +70,42 @@ nav .incomplete:focus {
         }
     }
 }
+
+.swal-modal {
+    font-family: $primaryFont;
+    background: $primaryColour;
+    border-radius: 10px;
+}
+
+.swal-overlay {
+    background: rgba($accentColour, 0.2);
+}
+
+.swal-title {
+    color: $secondaryColour;
+    font-family: $secondaryFont;
+}
+
+.swal-text {
+    color: $secondaryColour;
+        // font-family: $secondaryFont;
+}
+
+.swal-button {
+    font-family: $secondaryFont;
+    background: $secondaryColour;
+    color: $primaryColour;
+    border: 2px solid $secondaryColour;
+    text-transform: uppercase;
+    border: none;
+    &:focus{
+        background: $accentColour;
+        color: $primaryColour;
+    }
+}
+
+.swal-button--confirm {  
+    background: $primaryText;
+    color: $secondaryColour;
+    border: 2px solid $secondaryColour;
+}

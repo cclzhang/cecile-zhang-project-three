@@ -511,6 +511,45 @@ nav .incomplete:focus {
   color: #ffafaf;
 }
 
+.swal-modal {
+  font-family: "Montserrat", "Verdana", sans-serif;
+  background: #37375f;
+  border-radius: 10px;
+}
+
+.swal-overlay {
+  background: rgba(255, 175, 175, 0.2);
+}
+
+.swal-title {
+  color: #fff2eb;
+  font-family: "courier new", "courier", monospace;
+}
+
+.swal-text {
+  color: #fff2eb;
+}
+
+.swal-button {
+  font-family: "courier new", "courier", monospace;
+  background: #fff2eb;
+  color: #37375f;
+  border: 2px solid #fff2eb;
+  text-transform: uppercase;
+  border: none;
+}
+
+.swal-button:focus {
+  background: #ffafaf;
+  color: #37375f;
+}
+
+.swal-button--confirm {
+  background: #1e1e3f;
+  color: #fff2eb;
+  border: 2px solid #fff2eb;
+}
+
 /* sleep page one */
 .sleepOne {
   margin: auto auto;
