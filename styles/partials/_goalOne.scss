@@ -1,8 +1,12 @@
 /* goals page one */
 .goalsOne {
-    height: 100vh;
+    min-height: 100vh;
     @include flex(column, center, center);
+    flex-wrap: nowrap;
     text-align: center;
+    h2{
+        margin: 20px 0;
+    }
     h3 {
         width: 50px;
         height: 50px;
@@ -15,10 +19,12 @@
     }
     form {
         @include flex(column, null, center);
+        flex-wrap: nowrap;
     }
     input {
         @include fontSize(18);
         padding-left: 0;
+        font-family: $secondaryFont;
     }
     ul {
         padding: 30px 0;

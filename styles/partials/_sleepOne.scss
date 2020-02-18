@@ -4,7 +4,7 @@
 .sleepOne {
     margin: auto auto;
     @include flex(column, center, center);
-    height: 100vh;
+    min-height: 95vh;
     ul{
         min-width: 330px;
         min-height: 350px;

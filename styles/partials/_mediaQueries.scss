@@ -12,7 +12,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 560px) {
     body {
         flex-direction: column;
     }
@@ -21,6 +21,5 @@
     }
     .mobileNav {
         display: block;
-        // font-weight: 500;
     }
 }

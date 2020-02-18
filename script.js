@@ -26,7 +26,7 @@ lifeApp.mainHtml = `
             <h2>sleep</h2>
             <h3></h3><!-- average -->
         </button>
-        <button class="category run incomplete" tabindex="-1">
+        <button class="category run">
             <h2>run</h2>
             <h3>coming soon</h3><!-- times per month -->
         </button>
@@ -41,9 +41,8 @@ lifeApp.mainHtml = `
     </section>
 `;
 $homeButton.on('click', function(){
-    console.log(localStorage.getItem("averageSleep"));
     $wrapper.html(lifeApp.mainHtml);
-    $(".sleep.category h3").html(`${localStorage.getItem("averageSleep")} hrs`);
+    $(".sleep.category h3").html(`${localStorage.getItem("averageSleep")} hrs on average`);
     $(".goals.category h3").html(`${localStorage.getItem("goalsLeft")} left`);
 })
 
@@ -57,13 +56,10 @@ let yyyy = today.getFullYear();
 
 const dayOfWeek = today.getDay();
 
-// console.log(lifeApp.averageSlept());
-//const averageSleep = lifeApp.averageSlept();
-
 
 lifeApp.sleepOneHtml = `
     <section class="sleepOne">
-        <h2>wtd breakdown</h2>
+        <h2>current week breakdown</h2>
         <h3></h3>
         <ul>
             <li><span>sun</span></li>
@@ -93,13 +89,11 @@ lifeApp.sleepTwoHtml = `
 
 $sleepButton.on("click", function(){
     $wrapper.html(lifeApp.sleepOneHtml);
-    //console.log(localStorage.getItem("kys"));
     lifeApp.updateGraph();  
 });
 
 $wrapper.on("click", ".sleep.category", function () {
     $wrapper.html(lifeApp.sleepOneHtml);
-    //console.log(localStorage.getItem("kys"));
     lifeApp.updateGraph();
 });
 
@@ -120,8 +114,6 @@ $wrapper.on("submit", $sleepForm, function(e){
         }
     }
     localStorage.setItem("day" + dayOfWeek, lifeApp.timeSlept(bedTime, wakeTime));
-
-    console.log(lifeApp.averageSlept());
     localStorage.setItem("averageSleep", lifeApp.averageSlept());
     lifeApp.updateGraph();
 });
@@ -149,7 +141,7 @@ lifeApp.updateGraph = () => {
     $(".sleepOne li").each(function (index, li) {
         $(li).height(localStorage.getItem("day" + index) * 25);
     })
-    $(".sleepOne h3").html(`${localStorage.getItem("averageSleep")} hrs`);
+    $(".sleepOne h3").html(`${localStorage.getItem("averageSleep")} hrs on average`);
 };
 
 
@@ -209,8 +201,6 @@ $wrapper.on("click", ".goals.category", lifeApp.clickedGoal);
 $wrapper.on("submit", ".goalsOne form", function (e) {
     e.preventDefault();
     let goal = $('.goalsOne input').val();
-    console.log(goal);
-
     // to delete goal
     const deleteGoalButton = `
         <button class="goalDeleteButton">
@@ -226,7 +216,6 @@ $wrapper.on("submit", ".goalsOne form", function (e) {
         list.push(goal);
         localStorage.setItem("goalList", JSON.stringify(list));
         localStorage.setItem("goalsLeft", $(".goalsOne li").length);
-        console.log("li: ",localStorage.getItem("goalsLeft"));
         $(".goalsOne h3").html(localStorage.getItem("goalsLeft"));
     } else {
         $('#goalsError').show();
@@ -248,14 +237,63 @@ $wrapper.on("click", ".goalDeleteButton", function () {
     localStorage.setItem("goalList", JSON.stringify(list));
     goalListItem.remove();
     localStorage.setItem("goalsLeft", $(".goalsOne li").length);
-    console.log("li: ", localStorage.getItem("goalsLeft"));
     $(".goalsOne h3").html(localStorage.getItem("goalsLeft"));
 });
 
 
 
 // -------------------- RUN -----------------------//
+lifeApp.runHtml = `
+    <ul class="runOne">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+`;
 
+
+$runButton.on("click", function(){
+    $wrapper.html(lifeApp.runHtml);
+})
 
 
 lifeApp.init = () => {
@@ -273,12 +311,12 @@ lifeApp.init = () => {
         localStorage.setItem("goalsCompleted", 0);
     }
     if (localStorage.getItem("averageSleep") == null) {
-        localStorage.setItem("averageSleep", "--  ");
+        localStorage.setItem("averageSleep", "--");
     }
     if (localStorage.getItem("goalsLeft")==null){
-        localStorage.setItem("goalsLeft","");
+        localStorage.setItem("goalsLeft","--");
     }
-    $(".sleep.category h3").html(`${localStorage.getItem("averageSleep")} hrs`)
+    $(".sleep.category h3").html(`${localStorage.getItem("averageSleep")} hrs on average`)
     $(".goals.category h3").html(`${localStorage.getItem("goalsLeft")} left`);
 }
 
