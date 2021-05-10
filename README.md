@@ -1,9 +1,9 @@
 # A Simple Dashboard
 
-<p>The ultimate productivity tracker, this app uses jQuery and local storage to help track sleep, # of runs and a running to-do-list</p>
+The ultimate productivity tracker, this app uses jQuery and local storage to help track sleep, # of runs and a running to-do-list.
 
-<h2>License</h2>
+## License
 
-<p>Copyright &copy; 2020 Cecile Zhang. All rights reserved.</p>
+Copyright &copy; Cecile Zhang. All rights reserved.
 
-<p>Licensed under the <a href="./LICENSE">MIT License.</a></p>
+Licensed under the [MIT License](./LICENSE).
